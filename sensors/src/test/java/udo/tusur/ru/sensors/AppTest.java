@@ -1,4 +1,4 @@
-package jeesu.udo.tusur.ru.sensors;
+package udo.tusur.ru.sensors;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -33,6 +33,7 @@ public class AppTest
      */
     public void testApp()
     {
-        assertTrue( true );
+        
+        assertEquals(13, 13);
     }
 }
