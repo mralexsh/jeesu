@@ -1,4 +1,4 @@
-package udo.tusur.ru.sensors;
+package ru.tusur.udo.sensors;
 
 import java.util.List;
 
@@ -30,8 +30,10 @@ public class SensorEmulationRuntime extends Thread implements SensorObserver {
 	public void run() {
 		while(true) {
 			try {
-				for (PseudoSensor sensor: this.pseudoSensors) {
-					sensor.doEmulate();
+				if (this.pseudoSensors != null) {
+					for (PseudoSensor sensor: this.pseudoSensors) {
+						sensor.doEmulate();
+					}	
 				}
 				sleep(this.refreshTicks);
 			} catch (InterruptedException e) {

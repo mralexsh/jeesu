@@ -1,6 +1,9 @@
-package udo.tusur.ru.sensors;
+package ru.tusur.udo.sensors;
 
 import junit.framework.TestCase;
+import ru.tusur.udo.sensors.Alarm;
+import ru.tusur.udo.sensors.SensorObservable;
+import ru.tusur.udo.sensors.SensorObserver;
 class Log implements SensorObservable {
 	private String message;
 	public String getMessage() {
