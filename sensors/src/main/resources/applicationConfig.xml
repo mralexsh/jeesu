@@ -11,17 +11,38 @@
 	 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 
+  
+   <bean id="sensors" class="java.util.ArrayList">
+          <constructor-arg>
+          <list>
+              <ref bean="sensor1" />
+              <ref bean="sensor2" />
+          </list>
+          </constructor-arg>
+   </bean>
+  <bean id="astrategy" class="ru.tusur.udo.sensors.AStrategy">
+   	<property name="interval" value="3" />
+   	<property name="min" value="0" />
+   	<property name="max" value="0" />
+  </bean>
+  <bean id="dstrategy" class="ru.tusur.udo.sensors.DStrategy">
+   		<property name="interval" value="10" />
+  </bean>
+  <bean id="sensor1" class="ru.tusur.udo.sensors.PseudoSensor">
+   		<property name="id" value="Test Digital sensor1" />
+   		<property name="type" value="0" />
+   		<property name="emulationStrategy" ref="dstrategy" />
+  </bean>
+  <bean id="sensor2" class="ru.tusur.udo.sensors.PseudoSensor">
+   		<property name="id" value="Test Analog sensor2" />
+   		<property name="type" value="1" />
+   		<property name="emulationStrategy" ref="astrategy" />
+  </bean>
+  
+  
   <bean id="runtime" class="ru.tusur.udo.sensors.SensorEmulationRuntime">
+  	<property name="pseudoSensors" ref="sensors" />
     
   </bean>
-<!-- 
-  <bean id="basicDataSource" class="org.apache.commons.dbcp.BasicDataSource">
-    <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-    <property name="url" value="jdbc:mysql://localhost/my_database" />
-    <property name="username" value="my_username" />
-    <property name="password" value="my_password" />
-    <property name="initialSize" value="3" />
-    <property name="maxActive" value="10" />
-  </bean>
- -->
+
 </beans>

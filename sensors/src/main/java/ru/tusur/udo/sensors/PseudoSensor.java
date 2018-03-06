@@ -9,7 +9,7 @@ public class PseudoSensor implements Sensor, SensorEmulator {
 	private String id;
 	private long timeStamp;
 	private Date date;
-	private EmulationStrategy emulattionStrategy;
+	private EmulationStrategy emulationStrategy;
 	public PseudoSensor() {
 		this.date = new Date();
 	}
@@ -35,15 +35,15 @@ public class PseudoSensor implements Sensor, SensorEmulator {
 	public long getTimeStamp() {
 		return this.timeStamp;
 	}
-	public EmulationStrategy getEmulattionStrategy() {
-		return emulattionStrategy;
+	public EmulationStrategy getEmulationStrategy() {
+		return emulationStrategy;
 	}
-	public void setEmulattionStrategy(EmulationStrategy emulattionStrategy) {
-		this.emulattionStrategy = emulattionStrategy;
+	public void setEmulationStrategy(EmulationStrategy emulattionStrategy) {
+		this.emulationStrategy = emulattionStrategy;
 	}
 	public void doEmulate() {
-		if (this.emulattionStrategy != null) {
-			this.emulattionStrategy.doEmulate(this);	
+		if (this.emulationStrategy != null) {
+			this.emulationStrategy.doEmulate(this);	
 		}
 	}
 

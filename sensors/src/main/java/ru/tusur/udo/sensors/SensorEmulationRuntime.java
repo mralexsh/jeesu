@@ -34,6 +34,7 @@ public class SensorEmulationRuntime extends Thread implements SensorObserver {
 					for (PseudoSensor sensor: this.pseudoSensors) {
 						sensor.doEmulate();
 					}	
+					this.notifyObservables();
 				}
 				sleep(this.refreshTicks);
 			} catch (InterruptedException e) {
@@ -50,8 +51,10 @@ public class SensorEmulationRuntime extends Thread implements SensorObserver {
 		
 	}
 	public void notifyObservables() {
-		for (SensorObservable item: this.listeners) {
-			item.handle(this);
+		if (this.listeners != null) {
+			for (SensorObservable item: this.listeners) {
+				item.handle(this);
+			}	
 		}
 	}
 }
