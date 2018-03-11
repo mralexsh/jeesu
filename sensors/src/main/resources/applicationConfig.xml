@@ -9,8 +9,6 @@
          http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
          http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 	 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-
-
   
    <bean id="sensors" class="java.util.ArrayList">
           <constructor-arg>
@@ -20,13 +18,22 @@
           </list>
           </constructor-arg>
    </bean>
+   <bean id="listeners" class="java.util.ArrayList">
+          <constructor-arg>
+          <list>
+              <ref bean="listener" />
+          </list>
+          </constructor-arg>
+   </bean>
   <bean id="astrategy" class="ru.tusur.udo.sensors.AStrategy">
    	<property name="interval" value="3" />
    	<property name="min" value="0" />
-   	<property name="max" value="0" />
+   	<property name="max" value="100" />
   </bean>
   <bean id="dstrategy" class="ru.tusur.udo.sensors.DStrategy">
    		<property name="interval" value="10" />
+  </bean>
+  <bean id="listener" class="ru.tusur.udo.sensors.SensorListener">
   </bean>
   <bean id="sensor1" class="ru.tusur.udo.sensors.PseudoSensor">
    		<property name="id" value="Test Digital sensor1" />
@@ -42,7 +49,16 @@
   
   <bean id="runtime" class="ru.tusur.udo.sensors.SensorEmulationRuntime">
   	<property name="pseudoSensors" ref="sensors" />
+  	<property name="listeners" ref="listeners" />
     
   </bean>
+  <import resource="routes.xml"/>
+	  <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent"> 
+		<property name="brokerURL" value="http-connector://localhost:8080"/>
+	</bean>
+  <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring" trace="false">
+  		 <propertyPlaceholder id="properties" location="app.properties" />
+        <routeContextRef ref="start-route-sensors"/>
+  </camelContext>
 
 </beans>

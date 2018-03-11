@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>jeesu.udo.tusur.ru</groupId>
-  <artifactId>sensors</artifactId>
+  <artifactId>accumulator</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>sensors</name>
+  <name>accumulator</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -43,41 +43,6 @@
             <artifactId>camel-spring</artifactId>
             <version>${camel.version}</version>
         </dependency>
-    
-    
-    
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-jms</artifactId>
-      <version>${camel.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.activemq</groupId>
-      <artifactId>activemq-camel</artifactId>
-      <!-- lets use JMS 2.0 api but camel-jms still works with ActiveMQ 5.x that is JMS 1.1 only -->
-      <exclusions>
-        <exclusion>
-          <groupId>org.apache.geronimo.specs</groupId>
-          <artifactId>geronimo-jms_1.1_spec</artifactId>
-        </exclusion>
-      </exclusions>
-      <version>5.15.3</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.activemq</groupId>
-      <artifactId>activemq-pool</artifactId>
-      <!-- lets use JMS 2.0 api but camel-jms still works with ActiveMQ 5.x that is JMS 1.1 only -->
-      <exclusions>
-        <exclusion>
-          <groupId>org.apache.geronimo.specs</groupId>
-          <artifactId>geronimo-jms_1.1_spec</artifactId>
-        </exclusion>
-      </exclusions>
-        <version>5.15.3</version>
-    </dependency>
-    
-    
-    
     
   </dependencies>
 </project>
