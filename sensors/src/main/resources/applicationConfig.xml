@@ -53,8 +53,8 @@
     
   </bean>
   <import resource="routes.xml"/>
-	  <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent"> 
-		<property name="brokerURL" value="http-connector://localhost:8080"/>
+	  <bean id="activemq" class="org.jboss.naming.remote.client.InitialContextFactory"> 
+		<property name="PROVIDER_URL" value="http-remoting://localhost:8080"/>
 	</bean>
   <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring" trace="false">
   		 <propertyPlaceholder id="properties" location="app.properties" />

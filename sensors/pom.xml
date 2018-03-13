@@ -15,7 +15,12 @@
     <camel.version>2.20.0</camel.version>
     <spring.version>4.3.14.RELEASE</spring.version>
   </properties>
-
+<repositories>
+        <repository>
+            <id>JBoss Repository</id>
+            <url>https://repository.jboss.org/nexus/content/groups/public/</url>
+        </repository>
+    </repositories>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -76,7 +81,14 @@
         <version>5.15.3</version>
     </dependency>
     
-    
+    <!-- https://mvnrepository.com/artifact/org.wildfly/wildfly-jms-client-bom -->
+<dependency>
+    <groupId>org.wildfly</groupId>
+    <artifactId>wildfly-jms-client-bom</artifactId>
+    <version>11.0.0.Final</version>
+    <type>pom</type>
+</dependency>
+
     
     
   </dependencies>

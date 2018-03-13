@@ -16,7 +16,8 @@ public class SensorListener implements SensorObservable {
 		}
 	}
 	private void sendSensorsToCamel(List<PseudoSensor> sensors) {
-		this.producer.sendBody(sensors);
+		//this.producer.sendBody(sensors);
+		this.producer.sendBody("TTEEEEEEST");
 	}
 	/*
 	private void log(SensorEmulationRuntime runtime) {
