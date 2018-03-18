@@ -1,4 +1,7 @@
-package ru.tusur.udo.sensors;
+package ru.tusur.udo.sensors.core;
+
+import ru.tusur.udo.sensors.interfaces.Sensor;
+import ru.tusur.udo.sensors.interfaces.SensorEmulator;
 
 public class SensorObject implements Sensor, 
 									 SensorEmulator {

@@ -1,4 +1,7 @@
-package ru.tusur.udo.sensors;
+package ru.tusur.udo.sensors.core;
+
+import ru.tusur.udo.sensors.interfaces.EmulationStrategy;
+import ru.tusur.udo.sensors.interfaces.SensorEmulator;
 
 public class AStrategy implements EmulationStrategy {
 	private int interval;
@@ -7,12 +10,12 @@ public class AStrategy implements EmulationStrategy {
 	private int min;
 	private int max;
 	private int direction;
-	AStrategy() {
+	public AStrategy() {
 		this.ticks = 0;
 		this.value = 0;
 		this.direction = 1;
 	}
-	AStrategy(int interval) {
+	public AStrategy(int interval) {
 		this.ticks = 0;
 		this.value = 0;
 		this.interval = interval;

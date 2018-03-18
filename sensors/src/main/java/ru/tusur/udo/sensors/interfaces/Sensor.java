@@ -1,4 +1,4 @@
-package ru.tusur.udo.sensors;
+package ru.tusur.udo.sensors.interfaces;
 
 public interface Sensor {
 	String getId();

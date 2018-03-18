@@ -1,8 +1,8 @@
 package ru.tusur.udo.sensors;
 
 import junit.framework.TestCase;
-import ru.tusur.udo.sensors.DStrategy;
-import ru.tusur.udo.sensors.SensorObject;
+import ru.tusur.udo.sensors.core.DStrategy;
+import ru.tusur.udo.sensors.core.SensorObject;
 
 public class DStrategyTest extends TestCase {
 	public void testDStrategy() {

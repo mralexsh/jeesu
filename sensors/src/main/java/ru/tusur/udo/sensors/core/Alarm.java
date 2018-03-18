@@ -1,7 +1,10 @@
-package ru.tusur.udo.sensors;
+package ru.tusur.udo.sensors.core;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import ru.tusur.udo.sensors.interfaces.SensorObservable;
+import ru.tusur.udo.sensors.interfaces.SensorObserver;
 
 public class Alarm implements SensorObserver {
 

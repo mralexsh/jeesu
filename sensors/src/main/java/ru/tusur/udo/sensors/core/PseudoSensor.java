@@ -1,6 +1,10 @@
-package ru.tusur.udo.sensors;
+package ru.tusur.udo.sensors.core;
 
 import java.util.Date;
+
+import ru.tusur.udo.sensors.interfaces.EmulationStrategy;
+import ru.tusur.udo.sensors.interfaces.Sensor;
+import ru.tusur.udo.sensors.interfaces.SensorEmulator;
 
 public class PseudoSensor implements Sensor, SensorEmulator {
 

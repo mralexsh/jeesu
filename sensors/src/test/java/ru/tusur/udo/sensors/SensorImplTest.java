@@ -1,7 +1,7 @@
 package ru.tusur.udo.sensors;
 
 import junit.framework.TestCase;
-import ru.tusur.udo.sensors.Sensor;
+import ru.tusur.udo.sensors.interfaces.Sensor;
 
 class SensorImpl implements Sensor {
 

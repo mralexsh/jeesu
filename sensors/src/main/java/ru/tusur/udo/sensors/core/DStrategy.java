@@ -1,15 +1,18 @@
-package ru.tusur.udo.sensors;
+package ru.tusur.udo.sensors.core;
+
+import ru.tusur.udo.sensors.interfaces.EmulationStrategy;
+import ru.tusur.udo.sensors.interfaces.SensorEmulator;
 
 public class DStrategy implements EmulationStrategy {
 
 	private int interval;
 	private int ticks;
 	private int value;
-	DStrategy() {
+	public DStrategy() {
 		this.ticks = 0;
 		this.value = 0;				
 	}
-	DStrategy(int interval) {
+	public DStrategy(int interval) {
 		this.ticks = 0;
 		this.value = 0;
 		this.interval = interval;		
