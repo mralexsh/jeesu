@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class JSONProcessor implements Processor{
 
-	@Override
+	//@Override
 	public void process(Exchange exchange) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println(exchange.getIn().getBody());

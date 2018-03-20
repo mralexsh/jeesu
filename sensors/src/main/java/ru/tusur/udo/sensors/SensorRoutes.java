@@ -1,5 +1,7 @@
 package ru.tusur.udo.sensors;
 
+import org.apache.camel.Exchange;
+import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
 
@@ -30,12 +32,25 @@ public class SensorRoutes extends RouteBuilder {
 
 	@Override
 	public void configure() throws Exception {
+		
+		from("timer://timer1?period=1000") 
+        .process(new Processor() {
+
+			public void process(Exchange exchange) throws Exception {
+				exchange.getIn().setBody("test BODY");
+				
+			}
+        	
+        }).to("activemq:queue:SensorsAccumulatorQueue");
+		
+		/*
 		from("timer://timer1?period=1000") 
         .process(this.emulationProcessor).to("direct:toJSon");
 		
 		
 		from("direct:toJSon") 
-        .process(this.jProcessor).to("file:d:/1.txt");
+        .process(this.jProcessor).to("activemq:queue:SensorsAccumulatorQueue");
+        */
 		
 	}
 		
