@@ -40,8 +40,7 @@ public class SensorRoutes extends RouteBuilder {
 				exchange.getIn().setBody("test BODY");
 				
 			}
-        });
-        //}).to("activemq:queue:SensorsAccumulatorQueue");
+        }).to("activemq:queue:SensorsAccumulatorQueue");
 		
 		/*
 		from("timer://timer1?period=1000") 

@@ -16,7 +16,7 @@ public class EmulationProcessor implements Processor {
 	public void setSensorEmulationRuntime(SensorEmulationRuntime sensorEmulationRuntime) {
 		this.sensorEmulationRuntime = sensorEmulationRuntime;
 	}
-	@Override
+	//@Override
 	public void process(Exchange exchange) throws Exception {
 		
 		this.sensorEmulationRuntime.executeEmulation();

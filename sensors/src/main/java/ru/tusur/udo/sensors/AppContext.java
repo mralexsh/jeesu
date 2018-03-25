@@ -25,6 +25,7 @@ public class AppContext {
 
 	@Bean
 	ConnectionFactory connectionFactory() throws NamingException {
+	
 		Properties ENV = new Properties() {
 	        private static final long serialVersionUID = 1L;
 	        {
@@ -37,12 +38,12 @@ public class AppContext {
 	      };
 	      
 	      Context ctx = new InitialContext(ENV);
-          return (ConnectionFactory) ctx.lookup("jms/RemoteConnectionFactory");
+	      return (ConnectionFactory) ctx.lookup("jms/RemoteConnectionFactory");
 	}
-	@Bean(name="activemq")			
-    public ActiveMQComponent createActiveMQComponent() throws NamingException {
+    public ActiveMQComponent activeMQComponent() throws NamingException {
         ActiveMQComponent activeMQComponent = ActiveMQComponent.activeMQComponent();
         activeMQComponent.setConnectionFactory(connectionFactory());
+        
         return activeMQComponent;
     }
 	@Bean
@@ -71,6 +72,8 @@ public class AppContext {
 	@Bean
 	public CamelContext camelContext() throws Exception {
 		DefaultCamelContext camelContext = new DefaultCamelContext();
+		camelContext.addComponent("activemq", this.activeMQComponent());
+		this.activeMQComponent().start();
 		camelContext.addRoutes(sensorRoutes());
 		return camelContext;
 	}
