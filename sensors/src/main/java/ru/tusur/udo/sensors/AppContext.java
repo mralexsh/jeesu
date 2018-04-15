@@ -43,7 +43,10 @@ public class AppContext {
     public ActiveMQComponent activeMQComponent() throws NamingException {
         ActiveMQComponent activeMQComponent = ActiveMQComponent.activeMQComponent();
         activeMQComponent.setConnectionFactory(connectionFactory());
-        
+        /*
+        activeMQComponent.setUsername("guest");
+        activeMQComponent.setPassword("111");
+        */
         return activeMQComponent;
     }
 	@Bean
@@ -73,7 +76,6 @@ public class AppContext {
 	public CamelContext camelContext() throws Exception {
 		DefaultCamelContext camelContext = new DefaultCamelContext();
 		camelContext.addComponent("activemq", this.activeMQComponent());
-		this.activeMQComponent().start();
 		camelContext.addRoutes(sensorRoutes());
 		return camelContext;
 	}
