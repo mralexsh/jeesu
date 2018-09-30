@@ -1,0 +1,27 @@
+body {
+	background: white;
+}
+.analog-body {
+	width: 400px;
+    height: 40px;
+    min-height: 40px;    
+    border: 3px solid blue;    
+} 
+.analog-body-percentage {
+	height:100%;
+	min-height:100%;
+	background: green;
+}
+
+.discreete-body {
+	width: 40px;
+    height: 40px;    
+    border: 3px solid blue;    
+    border-radius: 50%;
+} 
+.discreete-set {
+	background: red;
+}
+.discreete-unset {
+	background: none;
+}

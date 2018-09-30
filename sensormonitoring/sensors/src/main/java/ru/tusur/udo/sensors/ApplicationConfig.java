@@ -9,15 +9,19 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import ru.tusur.udo.sensors.core.JSONProcessor;
 import ru.tusur.udo.sensors.core.Sensor;
 import ru.tusur.udo.sensors.core.SensorRoutes;
 import ru.tusur.udo.sensors.core.SensorRuntime;
 import ru.tusur.udo.sensors.emulator.EmulationRuntime;
 
+
 @Configuration
 @ComponentScan(basePackages = {"ru.tusur.udo.sensors.core"})
+@PropertySource("classpath:application.properties")
 public class ApplicationConfig {	
 	
 	@Bean 
@@ -29,13 +33,14 @@ public class ApplicationConfig {
 	SensorRuntime sensorRuntime() {		
 		EmulationRuntime r = new EmulationRuntime();
 		r.setSensors((List<Sensor>) xmlContext().getBean("sensors"));		
-		//r.start();
+		r.start();
 		return r;		
 	}
-
+	
+	
 	@Bean
 	SensorRoutes sensorRoutes() {
-		SensorRoutes routes = new SensorRoutes();
+		SensorRoutes routes = new SensorRoutes();		
 		return routes;
 	}
 	
@@ -46,5 +51,7 @@ public class ApplicationConfig {
 		ctx.start();
 		return ctx;
 	}
+	
+	
 	
 }
