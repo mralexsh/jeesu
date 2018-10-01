@@ -12,6 +12,9 @@ public class SensorRoutes extends RouteBuilder {
 	@Value("${sensor.polling.interval}")
 	private String sensorPollingInterval;
 	
+	@Value("${app.server.endpoint}")
+	private String appServerEndpoint;
+	
 	@Autowired
 	private JSONProcessor jsonProcessor;
 
@@ -39,7 +42,9 @@ public class SensorRoutes extends RouteBuilder {
 					log.info(exchange.getIn().getBody().toString());
 					
 				}
-			});
+			})
+			.setHeader(Exchange.HTTP_METHOD, constant(org.apache.camel.component.http4.HttpMethods.POST))
+			.to("http4:" + this.appServerEndpoint);
 		
 		
 	}

@@ -7,6 +7,7 @@ import javax.ejb.Startup;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.camel.ProducerTemplate;
 import org.apache.camel.impl.JndiRegistry;
 
 
@@ -22,13 +23,21 @@ public class SensorMonitoringService
 	@Inject
 	SensorRoutes sensorRoutes;
 	
+	ProducerTemplate sensorEndpointProducer;
+	
 	@PostConstruct
 	public void init() {		
 		try {
 			this.sensorCamelContext.addRoutes(this.sensorRoutes);
+			this.sensorEndpointProducer = this.sensorCamelContext.createProducerTemplate();
 			this.sensorCamelContext.start();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+
+	public ProducerTemplate getSensorEndpointProducer() {
+		return sensorEndpointProducer;
+	}
+
 }

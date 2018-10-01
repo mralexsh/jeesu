@@ -18,7 +18,7 @@ public class SensorRoutes extends RouteBuilder {
 	
 	@Override
 	public void configure() throws Exception {
-		from("timer://timer?period=1000")		
+		from("direct:sensorendpoint")		
 		.process(this.dataBaseProcessor)
 		.bean(SensorsAccumulator.class);	
 	}

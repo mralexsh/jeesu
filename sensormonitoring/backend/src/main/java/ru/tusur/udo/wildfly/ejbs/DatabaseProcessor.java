@@ -10,7 +10,7 @@ public class DatabaseProcessor implements Processor{
 
 	@Override
 	public void process(Exchange exchange) throws Exception {
-		exchange.getOut().setBody("TEST MESSAGE TO WEBSOCKET");
+		exchange.getOut().setBody(exchange.getIn().getBody());
 		
 	}
 

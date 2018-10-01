@@ -4,4 +4,14 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  
+  <servlet>
+        <servlet-name>sensorendpoint</servlet-name>
+        <servlet-class>ru.tusur.udo.wildfly.ejbs.SensorEndpointController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>sensorendpoint</servlet-name>
+        <url-pattern>/sensorendpoint</url-pattern>
+    </servlet-mapping>
+    
 </web-app>
