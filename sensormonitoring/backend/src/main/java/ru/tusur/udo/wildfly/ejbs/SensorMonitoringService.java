@@ -23,8 +23,12 @@ public class SensorMonitoringService
 	@Inject
 	SensorRoutes sensorRoutes;
 	
-	ProducerTemplate sensorEndpointProducer;
+	private ProducerTemplate sensorEndpointProducer;
 	
+	@Inject		
+	SensorsAccumulator sensorAccumulator;
+	
+
 	@PostConstruct
 	public void init() {		
 		try {
@@ -40,4 +44,7 @@ public class SensorMonitoringService
 		return sensorEndpointProducer;
 	}
 
+	public SensorsAccumulator getSensorAccumulator() {
+		return sensorAccumulator;
+	}
 }

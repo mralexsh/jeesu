@@ -12,15 +12,32 @@ import org.apache.camel.builder.RouteBuilder;
 public class SensorRoutes extends RouteBuilder {
 	
 	@Inject
+	@Named("dataBaseProcessor")
 	Processor dataBaseProcessor;
+	
+	@Inject
+	@Named("jsonToObjectProcessor")
+	Processor jsonToObjectProcessor;
+	
+	@Inject
+	@Named("sensorAccumulatorProcessor")
+	Processor sensorAccumulatorProcessor;
 		
 	
 	
 	@Override
 	public void configure() throws Exception {
-		from("direct:sensorendpoint")		
+		
+		from("seda:sensorendpoint")		
 		.process(this.dataBaseProcessor)
-		.bean(SensorsAccumulator.class);	
+		.to("direct:jsonToObject");
+		
+		from("direct:jsonToObject")		
+		.process(this.jsonToObjectProcessor)
+		.to("direct:mergeNodes");
+					
+		from("direct:mergeNodes")
+		.process(this.sensorAccumulatorProcessor);	
 	}
 
 }

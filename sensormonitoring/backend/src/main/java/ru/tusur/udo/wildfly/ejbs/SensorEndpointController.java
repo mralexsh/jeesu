@@ -23,7 +23,7 @@ public class SensorEndpointController  extends HttpServlet {
 
 		this.monitoringService
 			.getSensorEndpointProducer()
-			.sendBody("direct:sensorendpoint", extractPostRequestBody(request));
+			.sendBody("seda:sensorendpoint", extractPostRequestBody(request));
 		
 		response.setStatus(HttpServletResponse.SC_OK);
     }

@@ -9,6 +9,7 @@ import javax.ejb.Singleton;
 import javax.ejb.Stateless;
 import javax.ejb.Timeout;
 import javax.ejb.TimerService;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
@@ -27,7 +28,8 @@ public class SensorsWebsocketEndpoint {
 	
 	private Session session;
 	
-	
+	@Inject
+	SensorMonitoringService monitoringService;
 	
 	@PostConstruct
 	public void init() {
@@ -63,7 +65,7 @@ public class SensorsWebsocketEndpoint {
 	
 	@Schedule(hour="*",minute="*",second="0/1")
 	public void handleWebsocket() {
-//		this.handleMessage("ddddddddddd");
+		this.handleMessage(this.monitoringService.getSensorAccumulator().getSensorsSnapshot());
 	}
 	
 }
