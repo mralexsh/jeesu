@@ -33,7 +33,7 @@ public class SensorRoutes extends RouteBuilder {
 		.to("direct:jsonToObject");
 		
 		from("direct:jsonToObject")		
-		.process(this.jsonToObjectProcessor)
+		//.process(this.jsonToObjectProcessor)
 		.to("direct:mergeNodes");
 					
 		from("direct:mergeNodes")

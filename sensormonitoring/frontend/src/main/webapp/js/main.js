@@ -75,7 +75,19 @@ const testNodes = [
 		]
 	}
 ]
+const socket = new WebSocket("ws://localhost:8080/backend/sensors");
+	socket.onopen = function() {};
+
+	socket.onclose = function(event) {};
+
+	socket.onmessage = function(event) {
+		const testNodes = [];
+		testNodes.push(JSON.parse(event.data));
+		app.$store.dispatch("updateSenors", testNodes);
+	};
+
+	socket.onerror = function(error) {
+	  alert("Error " + error.message);
+	};
 
 
-
-app.$store.dispatch("updateSenors", testNodes);

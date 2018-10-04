@@ -3,7 +3,7 @@ Vue.component('a-sensor', {
 	template: '<div class="a-sensor">' +
 	'<p> ANALOG SENSOR {{sensor.imei}}</p>' +
 	'<div class="analog-body">' +
-	'<div class="analog-body-percentage" v-bind:style="{width: sensor.percentage + \'%\'}">' +	
+	'<div class="analog-body-percentage" v-bind:style="{width: sensor.value + \'%\'}">' +	
 	'</div>' +
 	'</div>' +
     '</div>'

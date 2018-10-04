@@ -24,6 +24,8 @@ public class SensorsAccumulator  {
 	private static final Logger log = Logger.getLogger(SensorsAccumulator.class.toString());
 	
 	private List<SensorNodeDTO> nodes;
+
+	private String snapshot;
 	
 	public List<SensorNodeDTO> getNodes() {
 		return nodes;
@@ -35,8 +37,11 @@ public class SensorsAccumulator  {
 	public void init() {
 		this.nodes = new ArrayList<>();
 	}		
+	public String setSensorsSnapShot(String snapshot) {
+		return this.snapshot = snapshot;
+	}
 	public String getSensorsSnapshot() {
-		ObjectMapper mapper = new ObjectMapper();
+		/*ObjectMapper mapper = new ObjectMapper();
 		try {
 			return mapper.writeValueAsString(new Object() {
 				public List<SensorNodeDTO> getNodes() {
@@ -47,7 +52,9 @@ public class SensorsAccumulator  {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;	
+		return null;*/
+		return this.snapshot;
+		
 	}
 	
 }

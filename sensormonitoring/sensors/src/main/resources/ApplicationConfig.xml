@@ -6,31 +6,51 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.sprinspringframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-
-	<bean id="dstrategy1" class="ru.tusur.udo.sensors.emulator.DStrategy">
+	<bean id="astrategy1" scope="prototype" class="ru.tusur.udo.sensors.emulator.AStrategy">
+		<property name="ticksCounter" value="2"/>
+	</bean>
+	<bean id="astrategy2" scope="prototype" class="ru.tusur.udo.sensors.emulator.AStrategy">
+		<property name="ticksCounter" value="4"/>
+	</bean>
+	<bean id="dstrategy1" scope="prototype" class="ru.tusur.udo.sensors.emulator.DStrategy">
 		<property name="ticksCounter" value="2"/>
 	</bean>
 	
-	<bean id="dstrategy2" class="ru.tusur.udo.sensors.emulator.DStrategy">
+	<bean id="dstrategy2" scope="prototype" class="ru.tusur.udo.sensors.emulator.DStrategy">
 		<property name="ticksCounter" value="4"/>
 	</bean>
+	<bean id="dstrategy3" scope="prototype" class="ru.tusur.udo.sensors.emulator.DStrategy">
+		<property name="ticksCounter" value="6"/>
+	</bean>
 
-	<bean id="sensor1" class="ru.tusur.udo.sensors.emulator.FakeSensor">
+	<bean id="sensor1" scope="prototype" class="ru.tusur.udo.sensors.emulator.FakeSensor">
 		<property name="imei" value="test sensor1" />
 		<property name="status" value="1" />
 		<property name="emulationStrategy" ref="dstrategy1"/>
 	</bean>
 	
-	<bean id="sensor2" class="ru.tusur.udo.sensors.emulator.FakeSensor">
+	<bean id="sensor2" scope="prototype" class="ru.tusur.udo.sensors.emulator.FakeSensor">
 		<property name="imei" value="test sensor2 SUPER" />
 		<property name="status" value="1" />
-		<property name="emulationStrategy" ref="dstrategy1"/> 
+		<property name="emulationStrategy" ref="dstrategy2"/> 
 	</bean>
 	
-	<bean id="sensor3" class="ru.tusur.udo.sensors.emulator.FakeSensor">
+	<bean id="sensor3" scope="prototype" class="ru.tusur.udo.sensors.emulator.FakeSensor">
 		<property name="imei" value="test sensor3" />
 		<property name="status" value="1" />
- 		<property name="emulationStrategy" ref="dstrategy2"/> 
+ 		<property name="emulationStrategy" ref="dstrategy3"/> 
+	</bean>
+	<bean id="sensor4" scope="prototype" class="ru.tusur.udo.sensors.emulator.FakeSensor">
+		<property name="imei" value="test sensor4" />
+		<property name="status" value="1" />
+		<property name="type" value="1" />
+ 		<property name="emulationStrategy" ref="astrategy1"/> 
+	</bean>
+	<bean id="sensor5" scope="prototype" class="ru.tusur.udo.sensors.emulator.FakeSensor">
+		<property name="imei" value="test sensor4" />
+		<property name="status" value="1" />
+		<property name="type" value="1" />
+ 		<property name="emulationStrategy" ref="astrategy2"/> 
 	</bean>	
 
 	<bean id="sensors" class="java.util.ArrayList"> 
@@ -38,7 +58,9 @@
 		    <list> 	       
 	            <ref bean="sensor1" /> 
 	            <ref bean="sensor2" />
-	            <ref bean="sensor3" /> 
+	            <ref bean="sensor3" />
+	            <ref bean="sensor4" />
+	            <ref bean="sensor5" /> 
 	         </list> 
 	     </constructor-arg> 
 	</bean> 

@@ -18,13 +18,15 @@ public class SensorAccumulatorProcessor  implements Processor{
 	
 	@Override
 	public void process(Exchange msg) throws Exception {
-		SensorNodeDTO nodeSensors = msg.getIn().getBody(SensorNodeDTO.class);
+		/*SensorNodeDTO nodeSensors = msg.getIn().getBody(SensorNodeDTO.class);
 		SensorsAccumulator accumulator = this.monitoringService.getSensorAccumulator();
 		
 		accumulator.getNodes()
 		.stream()
-		.filter(n -> n.getNode() != nodeSensors.getNode()).collect(Collectors.toList())
-		.add(nodeSensors);		
+		.filter(n -> n.getNode() != nodeSensors.getNode())
+		.collect(Collectors.toList())
+		.add(nodeSensors);*/
+		this.monitoringService.getSensorAccumulator().setSensorsSnapShot(msg.getIn().getBody().toString());
 	}
 
 }
