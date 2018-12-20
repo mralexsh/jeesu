@@ -5,20 +5,19 @@ import org.slf4j.LoggerFactory;
 
 import ru.tusur.udo.sensors.App;
 
-public class DStrategy implements EmulationStrategy {
+public class DStrategy2 implements EmulationStrategy {
 	
-	private static Logger log = LoggerFactory.getLogger(DStrategy.class);
+	private static Logger log = LoggerFactory.getLogger(DStrategy2.class);
 	
 	private int counter;
 	private int value;
 	private int tick;
 	
 	
-	public DStrategy() {
-		
-		log.info("СОЗДАНИЕ ДИСКРЕТНОЙ СТРАТЕГИИ ИЗ БИНА");
+	public DStrategy2() {
 		this.value = 0;
 		this.tick = 1;
+		this.counter = 5;
 	}
 	
 	
@@ -35,11 +34,6 @@ public class DStrategy implements EmulationStrategy {
 			this.tick ++;
 		}
 		sensor.setValue(value);
-	}
-
-	@Override
-	public void setTicksCounter(int counter) {
-		this.counter = counter;
 	}
 
 }

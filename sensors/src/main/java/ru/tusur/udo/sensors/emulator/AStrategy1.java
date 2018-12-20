@@ -1,6 +1,6 @@
 package ru.tusur.udo.sensors.emulator;
 
-public class AStrategy implements EmulationStrategy{
+public class AStrategy1 implements EmulationStrategy {
 
 	private int counter;
 	private int ticks;
@@ -8,9 +8,10 @@ public class AStrategy implements EmulationStrategy{
 	private int direction;
 	private int max;
 	private int min;
-	public  AStrategy() {
+	public  AStrategy1() {
 		this.min = 0;
 		this.max = 100;
+		this.counter = 3;
 	} 
 
 	@Override
@@ -31,9 +32,5 @@ public class AStrategy implements EmulationStrategy{
 			this.direction = 1;
 		}
 		return this.direction;
-	}
-	@Override
-	public void setTicksCounter(int counter) {
-		this.counter = counter;
 	}
 }

@@ -1,57 +1,51 @@
 package ru.tusur.udo.sensors;
 
-import java.util.List;
+import java.util.Map;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import ru.tusur.udo.sensors.core.JSONProcessor;
-import ru.tusur.udo.sensors.core.Sensor;
-import ru.tusur.udo.sensors.core.SensorRoutes;
-import ru.tusur.udo.sensors.core.SensorRuntime;
-import ru.tusur.udo.sensors.emulator.EmulationRuntime;
-
+import ru.tusur.udo.sensors.core.SensorsRoutes;
+import ru.tusur.udo.sensors.emulator.FakeSensor;
 
 @Configuration
-@ComponentScan(basePackages = {"ru.tusur.udo.sensors.core"})
+@ComponentScan(basePackages = {"ru.tusur.udo.sensors"})
 @PropertySource("classpath:application.properties")
-public class ApplicationConfig {	
+public class ApplicationConfig {
 	
-	@Bean 
-	public ClassPathXmlApplicationContext xmlContext() {			
-		return new ClassPathXmlApplicationContext("ApplicationConfig.xml");				
+	private static Logger log = LoggerFactory.getLogger(ApplicationConfig.class);
+	
+	@Bean
+	ApplicationContext xmlContext() {
+		return new ClassPathXmlApplicationContext("ApplicationConfig.xml");
 	}
 	
 	@Bean
-	SensorRuntime sensorRuntime() {		
-		EmulationRuntime r = new EmulationRuntime();
-		r.setSensors((List<Sensor>) xmlContext().getBean("sensors"));		
-		r.start();
-		return r;		
+	public Map<String, FakeSensor> fakeSensors() {
+		ApplicationContext ctx = this.xmlContext();
+		return ctx.getBeansOfType(FakeSensor.class);
 	}
 	
-	
 	@Bean
-	SensorRoutes sensorRoutes() {
-		SensorRoutes routes = new SensorRoutes();		
-		return routes;
+	public SensorsRoutes sensorsRoutes() {
+		return new SensorsRoutes();
 	}
 	
 	@Bean
 	CamelContext camelContext() throws Exception {
 		CamelContext ctx = new DefaultCamelContext();
-		ctx.addRoutes(sensorRoutes());
+		ctx.addRoutes(this.sensorsRoutes());
 		ctx.start();
 		return ctx;
 	}
-	
 	
 	
 }
