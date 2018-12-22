@@ -8,15 +8,20 @@
 			context.commit("UPDATE_SNAPSHOT_STATE", payload);
 		},
 		updateSensors:function (context, payload) {
-			context.commit("UPDATE_NODES", payload.state);
+			context.commit("UPDATE_NODES", payload);
 		}
 	},
 	mutations: {
 		UPDATE_SNAPSHOT_STATE: function(state, snapshotState) {
-			state.snapshotState = snapshotState
+			state.snapshotState = snapshotState;
 		},
 		UPDATE_NODES: function(state, nodes) {
-			state.nodes = nodes
+			if (Array.isArray(nodes)) {
+				state.nodes = nodes;
+			} else {
+				state.nodes = [nodes];
+			}
+
 		}
 	},
 	getters: {

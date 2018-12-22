@@ -3,14 +3,7 @@ const app = new Vue({
 	methods: {
     	recalcSensorsNodes() {
     		const queueNode = app.$store.getters.snapshotState();
-			console.log("----------");
-    		console.log(queueNode);
-    		const node = queueNode.pop();
-			console.log("++++++++++");
-			console.log(node);
-			app.$store.dispatch("updateSnapshotState", queueNode);
-
-			app.$store.dispatch("updateSensors", node);
+			app.$store.dispatch("updateSensors", queueNode.state.pop());
 
     	}
 	}
@@ -28,9 +21,7 @@ socket.onopen = function() {
 	socket.onclose = function(event) {};
 
 	socket.onmessage = function(event) {
-		const nodes = [];
-		nodes.push(JSON.parse(event.data));
-		app.$store.dispatch("updateSnapshotState", nodes);
+		app.$store.dispatch("updateSnapshotState", JSON.parse(event.data));
 	};
 
 	socket.onerror = function(error) {
