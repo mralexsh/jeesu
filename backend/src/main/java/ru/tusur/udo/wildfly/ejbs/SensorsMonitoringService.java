@@ -22,11 +22,11 @@ public class SensorsMonitoringService {
 	
 	@Inject
 	private SensorsRoutes sensorsRoutes;
-	
-	
+
 	private ProducerTemplate sensorsStartTemplate;
-	
-	private String sensorsSnapshot;
+
+	@Inject
+	private SnapshotState snapshotState;
 	
 	@PostConstruct
 	public void init() {
@@ -37,7 +37,6 @@ public class SensorsMonitoringService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		log.info("---------------УРА БИН СТАРТАНУЛ------------");
 	}
 
 
@@ -51,13 +50,13 @@ public class SensorsMonitoringService {
 	}
 
 
-	public String getSensorsSnapshot() {
-		return sensorsSnapshot;
+	public SnapshotState getSensorsSnapshot()	{
+		return this.snapshotState;
 	}
 
 
-	public void setSensorsSnapshot(String sensorsSnapshot) {
-		this.sensorsSnapshot = sensorsSnapshot;
+	public void setSensorsSnapshot(SensorNodeDTO node) {
+		this.snapshotState.setState(node);
 	}
 	
 	

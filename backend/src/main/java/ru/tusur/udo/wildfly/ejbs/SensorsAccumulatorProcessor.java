@@ -18,7 +18,7 @@ public class SensorsAccumulatorProcessor  implements Processor {
 	@Override
 	public void process(Exchange msg) throws Exception {
 		
-		this.monitoringService.setSensorsSnapshot((String) msg.getIn().getBody());
+		this.monitoringService.setSensorsSnapshot((SensorNodeDTO) msg.getIn().getBody());
 		
 	}
 

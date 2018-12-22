@@ -17,16 +17,27 @@ public class SensorsRoutes extends RouteBuilder {
 			Logger.getLogger(SensorsMonitoringService.class.toString());
 
 	@Inject
+	@Named("jsonToObjectProcessor")
+	Processor jsonToObjectProcessor;
+
+	@Inject
 	@Named("sensorsAccumulatorProcessor")
 	Processor sensorAccumulatorProcessor;
-	
-	
-	
+
+
+
 	@Override
 	public void configure() throws Exception {
 		
 		from("seda:sensorsStartPoint")
-		.process(this.sensorAccumulatorProcessor);
+				.to("direct:jsonToObject");
+
+		from("direct:jsonToObject")
+				.process(this.jsonToObjectProcessor)
+				.to("direct:mergeNodes");
+
+		from("direct:mergeNodes")
+				.process(this.sensorAccumulatorProcessor);
 		
 		
 	}

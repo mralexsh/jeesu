@@ -37,7 +37,7 @@ public class SensorsWebsocketController {
 	
 	@Schedule(hour="*", minute="*", second="0/1")
 	public void handleWebsocket() {
-		this.handleMessage(this.monitoringService.getSensorsSnapshot());
+		this.handleMessage(this.monitoringService.getSensorsSnapshot().toJSON());
 	}
 	
 	
