@@ -3,8 +3,7 @@ const app = new Vue({
 	methods: {
     	recalcSensorsNodes() {
     		const queueNode = app.$store.getters.snapshotState();
-			app.$store.dispatch("updateSensors", queueNode.state.pop());
-
+			app.$store.dispatch("updateSensors", queueNode.state);
     	}
 	}
     

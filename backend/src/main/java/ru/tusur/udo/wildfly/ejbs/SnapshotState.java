@@ -4,18 +4,18 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.ejb.Stateless;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedList;
 
-import java.util.Queue;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Stateless
 public class SnapshotState {
 
-    private Queue<SensorNodeDTO> state = new LinkedList<>();
-    private int jitterSize = 10;
+    private List<SensorNodeDTO> state = new ArrayList<>();
 
-    public Queue<SensorNodeDTO> getState() {
+    public List<SensorNodeDTO> getState() {
         return state;
     }
 
@@ -24,7 +24,7 @@ public class SnapshotState {
         ObjectMapper mapper = new ObjectMapper();
         try {
             return mapper.writeValueAsString(new Object() {
-                public Queue<SensorNodeDTO> getState() {
+                public List<SensorNodeDTO> getState() {
                     return self.getState();
                 }
                 public long getTimestamp() {
@@ -40,9 +40,10 @@ public class SnapshotState {
 
 
     public void setState(SensorNodeDTO node) {
-        if (this.state.size() > this.jitterSize) {
-            this.state.remove();
-        }
+        this.state = this.state
+                .stream()
+                .filter(sensorNodeDTO -> !sensorNodeDTO.getNode().equals(node.getNode()))
+                .collect(Collectors.toList());
         this.state.add(node);
     }
 }
