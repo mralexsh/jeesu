@@ -1,0 +1,20 @@
+version: '3'
+services:
+  sensors_node1:
+    build:
+      context: sensors
+      dockerfile: node1/Dockerfile
+  sensors_node2:
+    build:
+      context: sensors
+      dockerfile: node2/Dockerfile
+  sensors_node3:
+    build:
+      context: sensors
+      dockerfile: node3/Dockerfile
+
+  wildfly:
+    build: ./wildfly
+    ports:
+      - "8080:8080"
+      - "9990:9990"

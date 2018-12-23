@@ -52,6 +52,15 @@
   </dependencies>
   <build>
     <finalName>sensors</finalName>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <excludes>
+          <exclude>*.properties</exclude>
+        </excludes>
+        <filtering>false</filtering>
+      </resource>
+    </resources>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -62,8 +71,6 @@
               <mainClass>ru.tusur.udo.sensors.App</mainClass>
             </transformer>
           </transformers>
-          <finalName>sensors</finalName>
-          <outputDirectory>../docland/sensors/</outputDirectory>
         </configuration>
         <executions>
           <execution>
@@ -71,6 +78,9 @@
             <goals>
               <goal>shade</goal>
             </goals>
+            <configuration>
+              <outputFile>../docland/sensors/sensors.jar</outputFile>
+            </configuration>
           </execution>
         </executions>
       </plugin>
