@@ -34,22 +34,9 @@ public class SensorsRoutes extends RouteBuilder {
 			.process(this.jsonProcessor)
 			.to("direct:sendJson");
 		
-	/*	from("direct:sendJson")
-			.process(new Processor() {
-
-				@Override
-				public void process(Exchange msg) throws Exception {
-					System.out.println(msg.getIn().getBody());
-				}
-				
-			});
-*/		
 		from("direct:sendJson")
 			.setHeader(Exchange.HTTP_METHOD, constant(org.apache.camel.component.http4.HttpMethods.POST))
 			.to("http4:" + this.appServerEndpoint);
-		
-		
-		
 	}
 
 	

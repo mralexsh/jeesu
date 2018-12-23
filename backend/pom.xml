@@ -76,5 +76,14 @@
   </dependencies>
   <build>
     <finalName>backend</finalName>
+    <plugins>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-war-plugin</artifactId>
+      <configuration>
+        <outputDirectory>../docland/wildfly/</outputDirectory>
+      </configuration>
+    </plugin>
+    </plugins>
   </build>
 </project>
