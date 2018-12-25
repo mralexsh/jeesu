@@ -26,6 +26,15 @@ public class SensorDTO {
         this.type = type;
     }
 
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    private long timestamp;
     private String imei;
     private int status;
     private int value;

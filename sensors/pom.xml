@@ -55,9 +55,9 @@
     <resources>
       <resource>
         <directory>src/main/resources</directory>
-        <excludes>
+        <!--<excludes>
           <exclude>*.properties</exclude>
-        </excludes>
+        </excludes>-->
         <filtering>false</filtering>
       </resource>
     </resources>

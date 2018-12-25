@@ -24,6 +24,10 @@ public class SensorsRoutes extends RouteBuilder {
 	@Named("sensorsAccumulatorProcessor")
 	Processor sensorAccumulatorProcessor;
 
+	@Inject
+	@Named("storeDBProcessor")
+	Processor storeDBProcessor;
+
 
 
 	@Override
@@ -34,7 +38,12 @@ public class SensorsRoutes extends RouteBuilder {
 
 		from("direct:jsonToObject")
 				.process(this.jsonToObjectProcessor)
+				.to("direct:storeDB")
 				.to("direct:mergeNodes");
+
+		from("direct:storeDB")
+				.process(this.storeDBProcessor);
+
 
 		from("direct:mergeNodes")
 				.process(this.sensorAccumulatorProcessor);
