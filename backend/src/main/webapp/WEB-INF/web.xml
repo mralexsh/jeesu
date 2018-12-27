@@ -7,7 +7,7 @@
   
   <servlet>
   	<servlet-name>SensorsIncomingServlet</servlet-name>
-  	<servlet-class>ru.tusur.udo.wildfly.ejbs.ApiController</servlet-class>
+  	<servlet-class>ru.tusur.udo.wildfly.ejbs.controller.ApiController</servlet-class>
   </servlet>
   
   <servlet-mapping>

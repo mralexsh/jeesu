@@ -1,4 +1,4 @@
-package ru.tusur.udo.wildfly.ejbs;
+package ru.tusur.udo.wildfly.ejbs.dto;
 
 import java.util.List;
 

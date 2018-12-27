@@ -1,4 +1,6 @@
-package ru.tusur.udo.wildfly.ejbs;
+package ru.tusur.udo.wildfly.ejbs.controller;
+
+import ru.tusur.udo.wildfly.ejbs.service.SensorsMonitoringService;
 
 import javax.ejb.Schedule;
 import javax.ejb.Stateless;
@@ -15,7 +17,7 @@ public class SensorsWebsocketController {
 	private Session session; 
 	
 	@Inject
-	SensorsMonitoringService monitoringService;
+    SensorsMonitoringService monitoringService;
 	
 	@OnOpen
 	public void connect(Session session) {

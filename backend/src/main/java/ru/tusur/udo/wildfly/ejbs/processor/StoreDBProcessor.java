@@ -1,7 +1,8 @@
-package ru.tusur.udo.wildfly.ejbs;
+package ru.tusur.udo.wildfly.ejbs.processor;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
+import ru.tusur.udo.wildfly.ejbs.dto.SensorNodeDTO;
 import ru.tusur.udo.wildfly.ejbs.repository.SensorLogRepository;
 
 import javax.ejb.Stateless;
@@ -16,8 +17,8 @@ public class StoreDBProcessor  implements Processor {
     SensorLogRepository sensorLogRepository;
 
     @Override
-    public void process(Exchange msg) throws Exception {
-        SensorNodeDTO node = (SensorNodeDTO) msg.getIn().getBody();
+    public void process(Exchange exchange) throws Exception {
+        SensorNodeDTO node = (SensorNodeDTO) exchange.getIn().getBody();
         node.getSensors().forEach(sensor -> sensorLogRepository.create(sensor, node.getNode()));
     }
 }

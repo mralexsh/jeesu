@@ -1,5 +1,6 @@
-package ru.tusur.udo.wildfly.ejbs;
+package ru.tusur.udo.wildfly.ejbs.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Stateless
-public class SnapshotState {
+public class SnapshotStateDTO {
 
     private List<SensorNodeDTO> state = new ArrayList<>();
 
@@ -20,8 +21,9 @@ public class SnapshotState {
     }
 
     public String toJSON() {
-        SnapshotState self = this;
+        SnapshotStateDTO self = this;
         ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         try {
             return mapper.writeValueAsString(new Object() {
                 public List<SensorNodeDTO> getState() {

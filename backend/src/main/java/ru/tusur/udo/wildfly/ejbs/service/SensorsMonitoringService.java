@@ -1,4 +1,4 @@
-package ru.tusur.udo.wildfly.ejbs;
+package ru.tusur.udo.wildfly.ejbs.service;
 
 import java.util.logging.Logger;
 
@@ -8,6 +8,10 @@ import javax.ejb.Startup;
 import javax.inject.Inject;
 
 import org.apache.camel.ProducerTemplate;
+import ru.tusur.udo.wildfly.ejbs.SensorsCamelContext;
+import ru.tusur.udo.wildfly.ejbs.SensorsRoutes;
+import ru.tusur.udo.wildfly.ejbs.dto.SensorNodeDTO;
+import ru.tusur.udo.wildfly.ejbs.dto.SnapshotStateDTO;
 
 
 @Singleton
@@ -23,41 +27,27 @@ public class SensorsMonitoringService {
 	@Inject
 	private SensorsRoutes sensorsRoutes;
 
-	private ProducerTemplate sensorsStartTemplate;
-
 	@Inject
-	private SnapshotState snapshotState;
+	private SnapshotStateDTO snapshotStateDTO;
 	
 	@PostConstruct
 	public void init() {
 		try {
 			this.sensorsCamelContext.addRoutes(this.sensorsRoutes);
-			this.setSensorsStartTemplate(this.sensorsCamelContext.createProducerTemplate());
 			this.sensorsCamelContext.start();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-
 	public ProducerTemplate getSensorsStartTemplate() {
-		return this.sensorsStartTemplate;
+		return this.sensorsCamelContext.getSensorsStartTemplate();
 	}
-
-
-	public void setSensorsStartTemplate(ProducerTemplate sensorsStartTemplate) {
-		this.sensorsStartTemplate = sensorsStartTemplate;
+	public SnapshotStateDTO getSensorsSnapshot()	{
+		return this.snapshotStateDTO;
 	}
-
-
-	public SnapshotState getSensorsSnapshot()	{
-		return this.snapshotState;
-	}
-
-
 	public void setSensorsSnapshot(SensorNodeDTO node) {
-		this.snapshotState.setState(node);
+		this.snapshotStateDTO.setState(node);
 	}
-	
-	
+
 }

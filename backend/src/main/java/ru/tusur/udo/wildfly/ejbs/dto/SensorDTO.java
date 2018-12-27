@@ -1,4 +1,6 @@
-package ru.tusur.udo.wildfly.ejbs;
+package ru.tusur.udo.wildfly.ejbs.dto;
+
+import java.util.List;
 
 public class SensorDTO {
     public String getImei() {
@@ -34,6 +36,15 @@ public class SensorDTO {
         this.timestamp = timestamp;
     }
 
+    public List<AlarmDTO> getAlarms() {
+        return alarms;
+    }
+
+    public void setAlarms(List<AlarmDTO> alarms) {
+        this.alarms = alarms;
+    }
+
+    private List<AlarmDTO> alarms;
     private long timestamp;
     private String imei;
     private int status;

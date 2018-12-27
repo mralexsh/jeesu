@@ -1,6 +1,6 @@
 package ru.tusur.udo.wildfly.ejbs.repository;
 
-import ru.tusur.udo.wildfly.ejbs.SensorDTO;
+import ru.tusur.udo.wildfly.ejbs.dto.SensorDTO;
 import ru.tusur.udo.wildfly.ejbs.entity.SensorLogEntity;
 
 import javax.ejb.Stateless;
