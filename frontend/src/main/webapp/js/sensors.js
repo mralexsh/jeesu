@@ -34,6 +34,11 @@
 			return function() {
 				return state.snapshotState;
 			}
+		},
+		stateTimestamp: function (state) {
+			return function() {
+				return state.snapshotState.timestamp;
+			}
 		}
 	}
 }); 

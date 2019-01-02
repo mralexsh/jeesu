@@ -10,7 +10,6 @@ body {
 .analog-body-percentage {
 	height:100%;
 	min-height:100%;
-	background: green;
 }
 
 .discreete-body {
@@ -20,8 +19,16 @@ body {
     border-radius: 50%;
 } 
 .discreete-set {
-	background: red;
 }
 .discreete-unset {
 	background: none;
+}
+.info-back {
+	background: green;
+}
+.warn-back {
+	background: yellow;
+}
+.err-back {
+	background: red;
 }

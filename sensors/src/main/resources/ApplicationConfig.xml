@@ -24,7 +24,7 @@
  	
  	<bean id="fakeSensor3" class="ru.tusur.udo.sensors.emulator.FakeSensor">
 		<property name="emulationStrategy" ref="astrategy1" />
-		<property name="imei" value="ANALOG SENSOR3" />
+		<property name="imei" value="IMEI123" />
 		<property name="status" value="0" />
 		<property name="value" value="666" />
 		<property name="type" value="1" />
