@@ -47,7 +47,7 @@ public class SensorsMonitoringService {
 		return this.snapshotStateDTO;
 	}
 	public void setSensorsSnapshot(SensorNodeDTO node) {
-		this.snapshotStateDTO.setState(node);
+		this.snapshotStateDTO.setSensorNode(node);
 	}
 
 }

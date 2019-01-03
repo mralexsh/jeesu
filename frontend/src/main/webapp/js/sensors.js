@@ -1,7 +1,8 @@
 ;const SENSORS = new Vuex.Store({
 	state: {
 		snapshotState: [],
-		nodes: []
+		nodes: [],
+		alarms: []
 	},
 	actions: {
 		updateSnapshotState:function (context, payload) {
@@ -9,6 +10,9 @@
 		},
 		updateSensors:function (context, payload) {
 			context.commit("UPDATE_NODES", payload);
+		},
+		updateAlarms:function (context, payload) {
+			context.commit("UPDATE_ALARMS", payload);
 		}
 	},
 	mutations: {
@@ -22,9 +26,22 @@
 				state.nodes = [nodes];
 			}
 
+		},
+		UPDATE_ALARMS: function(state, alarms) {
+			if (Array.isArray(alarms)) {
+				state.alarms = alarms;
+			} else {
+				state.alarms = [alarms];
+			}
+
 		}
 	},
 	getters: {
+		alarms: function(state) {
+			return function() {
+				return state.alarms;
+			}
+		},
 		nodes: function(state) {
 			return function() {
 				return state.nodes;

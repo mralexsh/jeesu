@@ -1,5 +1,8 @@
 package ru.tusur.udo.wildfly.ejbs.alarm;
 
+import java.util.Date;
+import java.util.UUID;
+
 public class Alarm {
     private AlarmActivityState alarmActivityState;
     private AlarmAcknowledgeState alarmAcknowledgeState;
@@ -7,7 +10,19 @@ public class Alarm {
     private AlarmStatus alarmStatus;
     private String alarmMessage;
     private String imeiLink;
+    private String alarmId;
 
+    public long getTimestamp() {
+        return new Date().getTime();
+    }
+
+    public  Alarm()
+    {
+        this.alarmId = UUID.randomUUID().toString();
+    }
+    public String getAlarmId() {
+        return alarmId;
+    }
     public AlarmStatus getAlarmStatus() {
         return alarmStatus;
     }

@@ -14,10 +14,10 @@ import java.util.stream.Collectors;
 @Stateless
 public class SnapshotStateDTO {
 
-    private List<SensorNodeDTO> state = new ArrayList<>();
+    private List<SensorNodeDTO> sensorNode = new ArrayList<>();
 
-    public List<SensorNodeDTO> getState() {
-        return state;
+    public List<SensorNodeDTO> getSensorNode() {
+        return sensorNode;
     }
 
     public String toJSON() {
@@ -26,8 +26,8 @@ public class SnapshotStateDTO {
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         try {
             return mapper.writeValueAsString(new Object() {
-                public List<SensorNodeDTO> getState() {
-                    return self.getState();
+                public List<SensorNodeDTO> getRoot() {
+                    return self.getSensorNode();
                 }
                 public long getTimestamp() {
                     return new Date().getTime();
@@ -41,11 +41,11 @@ public class SnapshotStateDTO {
     }
 
 
-    public void setState(SensorNodeDTO node) {
-        this.state = this.state
+    public void setSensorNode(SensorNodeDTO node) {
+        this.sensorNode = this.sensorNode
                 .stream()
                 .filter(sensorNodeDTO -> !sensorNodeDTO.getNode().equals(node.getNode()))
                 .collect(Collectors.toList());
-        this.state.add(node);
+        this.sensorNode.add(node);
     }
 }

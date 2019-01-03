@@ -42,12 +42,16 @@ public class AlarmService {
 
     private AlarmDTO createAlarmState(Alarm alarm, SensorDTO sensorDTO) {
         AlarmDTO alarmDTO = new AlarmDTO();
-        alarmDTO.setAlarmAcknowledgeState(AlarmAcknowledgeState.NOT_ACK);
         if (alarm.check(sensorDTO.getValue())) {
+            alarmDTO.setAlarmAcknowledgeState(AlarmAcknowledgeState.NOT_ACK);
             alarmDTO.setAlarmActivityState(AlarmActivityState.ON);
         } else {
+            alarmDTO.setAlarmAcknowledgeState(AlarmAcknowledgeState.ACK);
             alarmDTO.setAlarmActivityState(AlarmActivityState.OFF);
         }
+
+        alarmDTO.setAlarmId(alarm.getAlarmId());
+        alarmDTO.setTimestamp(alarm.getTimestamp());
         alarmDTO.setAlarmMessage(alarm.getAlarmMessage());
         alarmDTO.setAlarmStatus(alarm.getAlarmStatus());
 

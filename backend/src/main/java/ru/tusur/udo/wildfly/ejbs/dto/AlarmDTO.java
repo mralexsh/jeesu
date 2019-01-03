@@ -9,6 +9,24 @@ public class AlarmDTO {
     private AlarmActivityState alarmActivityState;
     private AlarmStatus alarmStatus;
     private String alarmMessage;
+    private String alarmId;
+    private long timestamp;
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public String getAlarmId() {
+        return alarmId;
+    }
+
+    public void setAlarmId(String alarmId) {
+        this.alarmId = alarmId;
+    }
 
     public AlarmAcknowledgeState getAlarmAcknowledgeState() {
         return alarmAcknowledgeState;
