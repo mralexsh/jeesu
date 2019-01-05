@@ -36,11 +36,11 @@
 	</bean>
  	
 	<bean id="dstrategy1" class="ru.tusur.udo.sensors.emulator.DStrategy" scope="prototype">
-		<property name="counter" value="1" />
+		<property name="counter" value="5" />
 	</bean>
 
 	<bean id="dstrategy2" class="ru.tusur.udo.sensors.emulator.DStrategy" scope="prototype">
-		<property name="counter" value="3" />
+		<property name="counter" value="7" />
 	</bean>
 	<bean id="astrategy1" class="ru.tusur.udo.sensors.emulator.AStrategy" scope="prototype">
 		<property name="counter" value="1" />

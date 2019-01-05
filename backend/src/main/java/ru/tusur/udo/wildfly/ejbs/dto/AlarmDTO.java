@@ -11,6 +11,15 @@ public class AlarmDTO {
     private String alarmMessage;
     private String alarmId;
     private long timestamp;
+    private String acknowledgeId;
+
+    public String getAcknowledgeId() {
+        return acknowledgeId;
+    }
+
+    public void setAcknowledgeId(String acknowledgeId) {
+        this.acknowledgeId = acknowledgeId;
+    }
 
     public long getTimestamp() {
         return timestamp;
