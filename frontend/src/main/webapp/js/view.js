@@ -62,8 +62,6 @@ Vue.component('sensor-node', {
 	}
 });
 
-
-
 Vue.component('sensor-nodes', {
     template: '<ul>' + 
     '<li v-for="node in nodes">' +
@@ -80,4 +78,63 @@ Vue.component('sensor-nodes', {
 			return this.$store.getters.stateTimestamp();
 		}
     }
+});
+
+
+Vue.component('sensor-alarm', {
+	props: ["alarm", "timestamp"],
+	template: '<div :class="[alarmStatus, ackStatus]" v-on:click="onClick"><p> {{ alarmInfo }}</p>' +
+				'</div>',
+	methods: {
+		onClick: function (event) {
+			console.log(event);
+		}
+	},
+	computed: {
+		alarmInfo: function () {
+			const a = this.$props.alarm;
+
+			return a.acknowledgeId + " "
+					+ a.alarmActivityState + " "
+					+ a.alarmAcknowledgeState + " "
+					+ a.alarmMessage;
+		},
+		alarmStatus: function () {
+			const a = this.$props.alarm;
+			switch (a.alarmStatus) {
+				case "INFO":
+					return "info-back-alarm";
+				case "WARNING":
+					return "warn-back-alarm";
+				case "ERROR":
+					return "err-back-alarm";
+			}
+		},
+		ackStatus: function () {
+			const a = this.$props.alarm;
+			switch (a.alarmAcknowledgeState) {
+				case "ACK":
+					return "alarm-ack";
+				case "NOT_ACK":
+					return "alarm-not-ack";
+			}
+		}
+	}
+});
+
+
+Vue.component('sensor-alarms', {
+	template: '<ul>' +
+		'<li v-for="(alarm, i) in alarms">' +
+		'<sensor-alarm :alarm=alarm :timestamp=stateTimestamp></sensor-alarm>' +
+		'</li>' +
+		'</ul>',
+	computed: {
+		alarms: function() {
+			return this.$store.getters.alarms();
+		},
+		stateTimestamp: function() {
+			return this.$store.getters.stateTimestamp();
+		}
+	}
 });

@@ -144,7 +144,7 @@ public class AlarmServiceTest {
         assertEquals(a.getAlarmActivityState(), AlarmActivityState.ON);
         assertEquals(a.getAlarmAcknowledgeState(), AlarmAcknowledgeState.ACK);
         assertEquals(b.getAlarmActivityState(), AlarmActivityState.OFF);
-        assertEquals(b.getAlarmAcknowledgeState(), AlarmAcknowledgeState.ACK);
+        assertEquals(b.getAlarmAcknowledgeState(), AlarmAcknowledgeState.NOT_ACK);
     }
 
     @Test
@@ -167,8 +167,8 @@ public class AlarmServiceTest {
         AlarmDTO b = alarms.get(1);
 
         assertEquals(a.getAlarmActivityState(), AlarmActivityState.OFF);
-        assertEquals(a.getAlarmAcknowledgeState(), AlarmAcknowledgeState.ACK);
+        assertEquals(a.getAlarmAcknowledgeState(), AlarmAcknowledgeState.NOT_ACK);
         assertEquals(b.getAlarmActivityState(), AlarmActivityState.ON);
-        assertEquals(b.getAlarmAcknowledgeState(), AlarmAcknowledgeState.NOT_ACK);
+        assertEquals(b.getAlarmAcknowledgeState(), AlarmAcknowledgeState.ACK);
     }
 }

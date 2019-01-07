@@ -61,14 +61,14 @@ public class AlarmService {
         AlarmDTO alarmDTO = new AlarmDTO();
         if (alarm.check(sensorDTO.getValue())) {
             alarmDTO.setAlarmActivityState(AlarmActivityState.ON);
-            if (needToResetAcknowledge(alarm, sensorDTO)) {
+            alarmDTO.setAlarmAcknowledgeState(alarm.getAlarmAcknowledgeState());
+        } else {
+            alarmDTO.setAlarmActivityState(AlarmActivityState.OFF);
+            if (alarm.getAlarmAcknowledgeState() == AlarmAcknowledgeState.ACK) {
                 alarmDTO.setAlarmAcknowledgeState(AlarmAcknowledgeState.NOT_ACK);
             } else {
                 alarmDTO.setAlarmAcknowledgeState(alarm.getAlarmAcknowledgeState());
             }
-        } else {
-            alarmDTO.setAlarmActivityState(AlarmActivityState.OFF);
-            alarmDTO.setAlarmAcknowledgeState(alarm.getAlarmAcknowledgeState());
         }
 
         alarmDTO.setAlarmId(alarm.getAlarmId());
@@ -78,14 +78,6 @@ public class AlarmService {
         alarmDTO.setAlarmStatus(alarm.getAlarmStatus());
 
         return alarmDTO;
-    }
-    private boolean needToResetAcknowledge(Alarm alarm, SensorDTO sensorDTO) {
-        List<AlarmDTO> l = sensorDTO.getAlarms()
-                .stream()
-                .filter(alarmDTO -> alarmDTO.getAcknowledgeId().equals(alarm.getAcknowledgeId()))
-                .collect(Collectors.toList());
-        return (l.size() == 1) && (l.get(0).getAlarmActivityState() == AlarmActivityState.OFF);
-
     }
 
 }

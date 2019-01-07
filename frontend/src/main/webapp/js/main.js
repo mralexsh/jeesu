@@ -12,7 +12,6 @@ const app = new Vue({
 				node.sensors.forEach(function (sensor) {
 					if (Array.isArray(sensor.alarms)) {
 						sensor.alarms.forEach(function (alarm) {
-							console.log(alarm);
 							res.push(alarm);
 						})
 					}
