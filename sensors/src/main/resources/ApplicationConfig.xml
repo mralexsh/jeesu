@@ -3,54 +3,28 @@
    xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-	<bean id="fakeSensor1" class="ru.tusur.udo.sensors.emulator.FakeSensor">
-		<property name="emulationStrategy" ref="dstrategy1" />
-		<property name="imei" value="DIGITAL SENSOR1" />
-		<property name="status" value="0" />
-		<property name="value" value="666" />
-		<property name="type" value="0" />
-	</bean>
- 	
- 	<bean id="fakeSensor2" class="ru.tusur.udo.sensors.emulator.FakeSensor">
-		<property name="emulationStrategy" ref="dstrategy2" />
-		<property name="imei" value="DIGITAL SENSOR2" />
-		<property name="status" value="0" />
-		<property name="value" value="666" />
-		<property name="type" value="0" />
-	</bean>
- 	
- 	<bean id="fakeSensor3" class="ru.tusur.udo.sensors.emulator.FakeSensor">
-		<property name="emulationStrategy" ref="astrategy1" />
-		<property name="imei" value="IMEI123" />
-		<property name="status" value="0" />
-		<property name="value" value="666" />
-		<property name="type" value="1" />
-	</bean>
-	
-	<bean id="fakeSensor4" class="ru.tusur.udo.sensors.emulator.FakeSensor">
-		<property name="emulationStrategy" ref="astrategy2" />
-		<property name="imei" value="ANALOG SENSOR4" />
-		<property name="status" value="0" />
-		<property name="value" value="666" />
-		<property name="type" value="1" />
-	</bean>
- 	
-	<bean id="dstrategy1" class="ru.tusur.udo.sensors.emulator.DStrategy" scope="prototype">
-		<property name="counter" value="5" />
-	</bean>
+<bean id="fakeSensor1" class="ru.tusur.udo.sensors.emulator.FakeSensor">
+	<property name="emulationStrategy" ref="dstrategy1"/>
+	<property name="value" value="666" />		
+	<property name="name" value="D_S1" />
+</bean>
 
-	<bean id="dstrategy2" class="ru.tusur.udo.sensors.emulator.DStrategy" scope="prototype">
-		<property name="counter" value="7" />
-	</bean>
-	<bean id="astrategy1" class="ru.tusur.udo.sensors.emulator.AStrategy" scope="prototype">
-		<property name="counter" value="1" />
-		<property name="min" value="0" />
-		<property name="max" value="100" />
-	</bean>
-	<bean id="astrategy2" class="ru.tusur.udo.sensors.emulator.AStrategy" scope="prototype">
-		<property name="counter" value="3" />
-		<property name="min" value="12" />
-		<property name="max" value="89" />
-	</bean>
+<bean id="fakeSensor2" class="ru.tusur.udo.sensors.emulator.FakeSensor">
+	<property name="emulationStrategy" ref="dstrategy1"/>
+	<property name="value" value="666" />		
+	<property name="name" value="D_SR2" />
+</bean>
+
+<bean id="fakeSensor3" class="ru.tusur.udo.sensors.emulator.FakeSensor">
+	<property name="emulationStrategy" ref="dstrategy1"/>
+	<property name="value" value="666" />		
+	<property name="name" value="D_SR3" />
+</bean>
+
+<bean id="dstrategy1" class="ru.tusur.udo.sensors.emulator.DStrategy">
+	<property name="ticks" value="5" />
+</bean>
+
+
 	 
 </beans>

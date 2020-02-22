@@ -9,51 +9,51 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
-import ru.tusur.udo.sensors.core.Sensor;
-import ru.tusur.udo.sensors.core.SensorsRuntime;
+import ru.tusur.udo.sensors.interfaces.Sensor;
+import ru.tusur.udo.sensors.interfaces.SensorRuntime;
 
 @Component
 public class SensorsEmulationRuntime extends Thread
-	implements SensorsRuntime {
-	private static Logger log = LoggerFactory.getLogger(SensorsEmulationRuntime.class);
+		implements SensorRuntime {
+	
+	private static Logger log = 
+			LoggerFactory.getLogger(SensorsEmulationRuntime.class);
 	
 	@Value("${runtime.interval}")
 	private int runtimeInterval;
 	
 	@Autowired
 	private Map<String, FakeSensor> fakeSensors;
+			
+	public List<Sensor> getSensors() {								
+						
+		
+		return fakeSensors
+			   .values()
+			   .stream()
+			   .map(fakeSensor -> fakeSensor.toPureSensor())
+			   .collect(Collectors.toList());
+	}
 	
-	private List<Sensor> sensors;
 	
 	public void run() {
-		while(true) {
-			this.emulate();
+	
+		while(true) {			
+			emulate();
 			try {
-				sleep(this.runtimeInterval);
+				sleep(runtimeInterval);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
+		
 	}
-	
 	
 	private void emulate() {
-		this.fakeSensors.forEach((str, value) -> {
-			value.emulate();
-		});
+		fakeSensors.forEach((key, s) -> {
+			s.emulate();
+			//log.info("Sensor: name=" + s.getName() + " value=" + s.getValue());			
+		});	
 	}
 
-
-	@Override
-	public List<Sensor> getSensors() {
-		
-		return this.fakeSensors
-			.values()
-			.stream()
-			.map(fakeSensor ->	fakeSensor.toPureSensor())
-			.collect(Collectors.toList());
-	}
-	
-	
 }

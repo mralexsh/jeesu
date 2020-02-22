@@ -1,6 +1,7 @@
 *target*
 .classpath
 .project
+.idea
 /.settings/.
 *target*
 *.jar

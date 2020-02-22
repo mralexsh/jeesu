@@ -4,22 +4,17 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
-    <servlet>
-        <servlet-name>AcknowledgeServlet</servlet-name>
-        <servlet-class>ru.tusur.udo.wildfly.ejbs.controller.AckController</servlet-class>
-    </servlet>
-    <servlet>
-  	<servlet-name>SensorsIncomingServlet</servlet-name>
-  	<servlet-class>ru.tusur.udo.wildfly.ejbs.controller.ApiController</servlet-class>
+  
+  <servlet>
+  	<servlet-name>ApiServlet</servlet-name>
+  	<servlet-class>ru.tusur.udo.ejbs.controllers.ApiController</servlet-class>
   </servlet>
-
-    <servlet-mapping>
-        <servlet-name>AcknowledgeServlet</servlet-name>
-        <url-pattern>/ack</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-  	<servlet-name>SensorsIncomingServlet</servlet-name>
+  
+  <servlet-mapping>
+  	<servlet-name>ApiServlet</servlet-name>
   	<url-pattern>/api</url-pattern>
   </servlet-mapping>
+  
+  
   
 </web-app>

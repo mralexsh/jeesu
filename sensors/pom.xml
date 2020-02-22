@@ -3,87 +3,42 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-	  <groupId>ru.tusur.udo</groupId>
-	  <artifactId>jeesu</artifactId>
-	  <version>0.0.1-SNAPSHOT</version>
+	<groupId>ru.tusur.udo</groupId>
+	<artifactId>jeesu</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
   </parent>
-
-  <artifactId>sensors</artifactId>
+    
+  <artifactId>sensors</artifactId>  
   <packaging>jar</packaging>
 
   <name>sensors</name>
   <url>http://maven.apache.org</url>
   
   <dependencies>
-  
-    <dependency>
-      <groupId>javax.xml.bind</groupId>
-      <artifactId>jaxb-api</artifactId>
-    </dependency>
-  
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-core</artifactId>
-    </dependency>
-    
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-http4</artifactId>
-    </dependency>
-    
-    <dependency>
+  <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
     </dependency>
-    
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-simple</artifactId>
+  	<dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-core</artifactId>      
     </dependency>
     <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-http4</artifactId>      
+    </dependency>
+  	<dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>      
+    </dependency>
+  	<dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
+      <artifactId>junit</artifactId>      
       <scope>test</scope>
     </dependency>
   </dependencies>
-  <build>
-    <finalName>sensors</finalName>
-    <resources>
-      <resource>
-        <directory>src/main/resources</directory>
-        <!--<excludes>
-          <exclude>*.properties</exclude>
-        </excludes>-->
-        <filtering>false</filtering>
-      </resource>
-    </resources>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-shade-plugin</artifactId>
-        <configuration>
-          <transformers>
-            <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-              <mainClass>ru.tusur.udo.sensors.App</mainClass>
-            </transformer>
-          </transformers>
-        </configuration>
-        <executions>
-          <execution>
-            <phase>package</phase>
-            <goals>
-              <goal>shade</goal>
-            </goals>
-            <configuration>
-              <outputFile>../docland/sensors/sensors.jar</outputFile>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
 </project>
