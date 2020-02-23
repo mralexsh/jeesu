@@ -15,9 +15,10 @@
   <url>http://maven.apache.org</url>
   
   <dependencies>
-  <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-jackson</artifactId>
+      <version>${camel.version}</version>
     </dependency>
   	<dependency>
       <groupId>org.apache.camel</groupId>
