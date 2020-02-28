@@ -27,16 +27,14 @@ public class SensorsRoutes extends RouteBuilder {
 		.completionInterval(1000)
 		.to("direct:frontendHandler");
 		
+		//TODO Do business logic here
+		
 		
 		from("direct:frontendHandler")
 		.marshal().json(JsonLibrary.Jackson, SensorsSnapshot.class)
-		.log("+++++++++++++++++++++++")
-		.log("${body}")
-		.log("+++++++++++++++++++++++");
-		
-		
-		
-	    
+		.log("${body}");
+		//.to("direct:wsController");
+							    
 		
 	}
 
