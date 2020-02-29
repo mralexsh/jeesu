@@ -5,7 +5,7 @@ import java.util.List;
 public class SensorsSnapshot {
 	String operator;
 	long timeStamp;
-	List<SensorNode> nodes;
+	List<EnrichedSensorNode> nodes;
 	public String getOperator() {
 		return operator;
 	}
@@ -18,10 +18,10 @@ public class SensorsSnapshot {
 	public void setTimeStamp(long timeStamp) {
 		this.timeStamp = timeStamp;
 	}
-	public List<SensorNode> getNodes() {
+	public List<EnrichedSensorNode> getNodes() {
 		return nodes;
 	}
-	public void setNodes(List<SensorNode> nodes) {
+	public void setNodes(List<EnrichedSensorNode> nodes) {
 		this.nodes = nodes;
 	}
 	

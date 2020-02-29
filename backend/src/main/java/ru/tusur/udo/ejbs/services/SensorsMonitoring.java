@@ -29,9 +29,9 @@ public class SensorsMonitoring {
 		.sendBody("seda:apiController", sensorsJSON);
 	}
 	
-	public String retrieveSnapshot() {
-		return sensorsCamelContext.getWsConsumerTemplate()
-		.receiveBody("direct://wsController", String.class);
+	public String retrieveSnapshot() {				
+		return sensorsCamelContext.getWsConsumerTemplate()		
+		.receiveBody("direct://wsController", 1000, String.class);		
 	}
 	
 	

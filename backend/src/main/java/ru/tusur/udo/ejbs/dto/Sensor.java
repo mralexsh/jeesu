@@ -2,8 +2,7 @@ package ru.tusur.udo.ejbs.dto;
 
 public class Sensor {
 	
-	private String name;
-	
+	private String name;	
 	private int value;
 	
 	public String getName() {
