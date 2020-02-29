@@ -1,5 +1,8 @@
 <html>
 <body>
-<h2>Hello from frontend </h2>
+    <sensors-snapshot></sensors-snapshot>
 </body>
+<script src="js/storage.js" type="text/javascript"></script>
+<script src="js/components.js" type="text/javascript"></script>
+<script src="js/web-socket.js" type="text/javascript"></script>
 </html>
