@@ -15,8 +15,7 @@ public class SensorsAggregationController {
     @Autowired
     AggregationService aggregationService;
 
-    @RequestMapping(value="/aggregator", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.OK)
+    @PostMapping(value="/aggregator")
     public void aggregate(@RequestBody NodeInfo nodeInfo) {
         aggregationService.aggregate(nodeInfo);
     }
