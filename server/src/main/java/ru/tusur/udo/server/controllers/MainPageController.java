@@ -44,7 +44,7 @@ public class MainPageController {
     @GetMapping(value="/info", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public Map info() {
-        return Collections.singletonMap("version", "1.0");
+        return Collections.singletonMap("version", "1.1");
     }
 
 }
